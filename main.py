@@ -1,9 +1,11 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 
 # MOCK_DATA = {
@@ -25,6 +27,8 @@ class DowryRequest(BaseModel):
 
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -34,8 +38,8 @@ app.add_middleware(
     allow_headers=["*"], 
 )
 @app.get("/")
-def root():
-    return {"message": "Server is live. Use POST /predict for predictions."}
+def serve_index():
+    return FileResponse(os.path.join("static", "index.html"))
 
 
 @app.post("/predict")
