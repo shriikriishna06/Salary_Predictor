@@ -27,7 +27,7 @@ class DowryRequest(BaseModel):
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 app.add_middleware(
@@ -39,7 +39,7 @@ app.add_middleware(
 )
 @app.get("/")
 def serve_index():
-    return FileResponse(os.path.join("static", "index.html"))
+    return FileResponse(os.path.join(os.path.dirname(__file__), "index.html"))
 
 
 @app.post("/predict")
