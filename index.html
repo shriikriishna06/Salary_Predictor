@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dowry Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('https://t3.ftcdn.net/jpg/07/09/19/12/360_F_709191258_Cj65a37pcXCo7CB85PTqNqo3cwh1xCYi.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .card {
+            background-color: rgb(226, 210, 210);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 150px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #4B5563;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ee5f12d7;
+            border-radius: 0.5rem;
+            background-color: #fcfdff;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/SS+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236B7280'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.5em;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem 0;
+            background-color: #DC2626;
+            color: #fff;
+            border-radius:4rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #eb4d4d;
+        }
+
+        #result {
+            margin-top: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1F2937;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="card">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">How much dowry are you worth?</h1>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="age">Age</label>
+                <select id="age" name="age">
+                    <option value="">Select</option>
+                    <option value="20">18-25</option>
+                    <option value="30">25-35</option>
+                    <option value="45">40-50</option>
+                    <option value="55">50-60</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="profession">Profession</label>
+                <select id="profession" name="profession">
+                    <option value="">Select</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Plumber">Plumber</option>
+                    <option value="Delivery Boy">Delivery Boy</option>
+                    <option value="All Rounder(iykyk)">All Rounder(iykyk)</option>
+                    <option value="Berojgar">Berojgar</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="salary">Monthly Salary</label>
+                <select id="salary" name="salary">
+                    <option value="">Select</option>
+                    <option value="10k">10k</option>
+                    <option value="20k">20k</option>
+                    <option value="50k">50k</option>
+                    <option value="100k">100k</option>
+                    <option value="300k">300k</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="education">Education</label>
+                <select id="education" name="education">
+                    <option value="">Select</option>
+                    <option value="Sathvi fail">Sathvi fail</option>
+                    <option value="Phd">Phd</option>
+                    <option value="B.E">B.E</option>
+                    <option value="MBBS">MBBS</option>
+                    <option value="10th pass">10th pass</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="residence">Residence</label>
+                <select id="residence" name="residence">
+                    <option value="">Select</option>
+                    <option value="Baap ka ghar">Baap ka ghar</option>
+                    <option value="khud ka ghar">khud ka ghar</option>
+                    <option value="be ghar">be ghar</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option value="">Bharat</option>
+                </select>
+            </div>
+        </div>
+        
+        <button id="calculateBtn" class="btn">Calculate now</button>
+        
+        <div id="result" class="text-lg font-semibold mt-6"></div>
+
+    </div>
+
+   <script>
+document.getElementById('calculateBtn').addEventListener('click', async () => {
+    const ageSelect = document.getElementById('age');
+    const salarySelect = document.getElementById('salary');
+    const professionSelect = document.getElementById('profession');
+    const educationSelect = document.getElementById('education');
+    const residenceSelect = document.getElementById('residence');
+    const resultDiv = document.getElementById('result');
+    
+    const ageValue = ageSelect.value;     
+    const salaryValue = salarySelect.value;
+    const professionValue= professionSelect.value;
+    const educationValue = educationSelect.value;
+    const residenceValue = residenceSelect.value;
+    
+   
+
+    if (!ageValue || !salaryValue || !professionValue || !educationValue || !residenceValue) {
+        resultDiv.innerText = "sab jaruri hai bhai...";
+        return;
+    }
+
+    const requestData = {
+        age: ageValue,
+        salary: salaryValue
+    };
+
+    try {
+        resultDiv.innerText = "Calculating...";
+        const response = await fetch('http://127.0.0.1:8000/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        resultDiv.innerText = `teri aukat: Rs. ${parseInt(data.dowry_value).toLocaleString()}`;
+
+    } catch (error) {
+        console.error('Error:', error);
+        resultDiv.innerText = "Server chud gaya";
+    }
+});
+</script>
+
