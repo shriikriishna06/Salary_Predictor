@@ -1,6 +1,6 @@
 # 💰 PayLensAI
 
-Small demo that estimates annual CTC for Indian tech roles using a tiny ML model.<br>
+Small demo that estimates annual CTC for Indian tech roles using a tiny ML(Linear Reg.) model.<br>
 Live on : https://paylensai.netlify.app<br>
 ⚠️IMP NOTE: Backend deployed on Render (free tier), may sleep causing cold starts...
 
