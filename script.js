@@ -12,9 +12,9 @@ document.getElementById('salaryForm').addEventListener('submit', async function 
     const salaryAmount = document.getElementById('salaryAmount');
     const submitBtn = this.querySelector('button[type="submit"]');
 
-    
+
     const requestData = {
-        "Experience": parseFloat(experienceInput.value), 
+        "Experience": parseFloat(experienceInput.value),
         "Role": roleSelect.value,
         "Education": educationSelect.value,
         "Location": locationSelect.value,
@@ -22,7 +22,12 @@ document.getElementById('salaryForm').addEventListener('submit', async function 
     };
 
     const originalBtnText = submitBtn.innerText;
-    submitBtn.innerText = "Calculating...";
+    let dotCount = 0;
+    submitBtn.innerText = "Calculating";
+    const loadingInterval = setInterval(() => {
+        dotCount = (dotCount + 1) % 4;
+        submitBtn.innerText = "Calculating" + ".".repeat(dotCount);
+    }, 400);
     submitBtn.disabled = true;
     submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
 
@@ -49,12 +54,15 @@ document.getElementById('salaryForm').addEventListener('submit', async function 
 
         salaryAmount.innerText = formattedSalary;
         resultOverlay.classList.remove('hidden');
+        setTimeout(() => {
+            resultOverlay.classList.remove('opacity-0', 'translate-y-4');
+        }, 10);
 
     } catch (error) {
-        // console.error('Error:', error);
         salaryAmount.innerText = "Error";
         alert("Failed to get prediction.");
     } finally {
+        clearInterval(loadingInterval)
         submitBtn.innerText = originalBtnText;
         submitBtn.disabled = false;
         submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
