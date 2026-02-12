@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 app=FastAPI()
 
@@ -15,7 +16,10 @@ app.add_middleware(
     allow_headers=["*"], 
 )
 #reads the dataset
-data=pd.read_excel(r"C:\Users\Shrikrishna R Prabhu\myrepo\india_job_market_2026.xlsx")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(BASE_DIR, "india_job_market_2026.xlsx")
+
+data = pd.read_excel(file_path)
 
 df=pd.DataFrame(data)
 #encodes the categorical values
